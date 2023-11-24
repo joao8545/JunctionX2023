@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/machine.css') }}">
+    <title>Flask Timeline</title>
+</head>
+<body>
+
+    <div class="timeline" id="timeline">
+        {% for hour_data in timeline_data %}
+            <div class="hour-container">
+                <div class="time-label">{{ hour_data['label'] }}</div>
+                {% for bar_data in hour_data['bars'] %}
+                    <div class="bar" data-status="{{ bar_data['status'] }}">
+                        <div class="bar-interval">{{ bar_data['label'] }}</div>
+                        <div class="bar-time">{{ bar_data['start'] }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    </body>
+</html>

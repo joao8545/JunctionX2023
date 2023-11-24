@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.time-label {
+    margin-top: 30px;
+}
+
+.hour-container {
+    display: flex;
+    flex-direction: row;
+    align-items: bottom;
+    margin-bottom: 20px;
+}
+
+.bar {
+    width: 60px;
+    height: 20px;
+    margin-right: 0px;
+    background-color: #3498db;
+}
+.bar[data-status="idle"] {
+    background-color: #00ff26; /* Green for idle */
+}
+
+.bar[data-status="patient"] {
+    background-color: #2727ae; /* Blue for patient */
+}
+
+.bar[data-status="maintenance"] {
+    background-color: #e74c3c; /* Red for maintenance */
+}

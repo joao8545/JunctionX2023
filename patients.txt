@@ -1,0 +1,101 @@
+name,surname,fractions,region
+Diego,Carvalho,13,Craniospinal
+Emese,Rocha,30,Breast
+Leonardo,Kovacs,30,Breast
+Matheus,Miranda,19,Breast
+Carolina,Nemeth,25,Breast
+Viktor,Kiss,25,Breast
+Fernanda,Ferreira,19,Breast
+Renata,Kiss,15,Breast
+Lucas,Martins,15,Breast
+Matheus,Costa,25,Breast
+Daniela,Juhasz,30,Breast
+Luciano,Vieira,25,Breast
+Balazs,Santos,15,Breast
+Krisztian,Lima,15,Breast
+Daniela,Almeida,25,Breast
+Adrienn,Silva,15,Breast
+Judit,Pereira,19,Breast
+Szilvia,Farkas,30,Breast
+Krisztian,Varga,25,Breast
+Isabella,Almeida,15,Breast
+Boglarka,Santos,25,Breast
+Levente,Santos,25,Breast
+Camila,Juhasz,25,Breast
+Luciano,Varga,30,Breast
+Joao,Pereira,19,Breast
+Dora,Lakatos,19,Breast
+Zsuzsanna,Toth,25,Breast special
+Ana,Horvath,15,Breast special
+Richard,Farkas,15,Breast special
+Tamas,Oliveira,30,Breast special
+Larissa,Simon,19,Breast special
+Kinga,Miranda,35,Head & neck
+Henrique,Miranda,15,Head & neck
+Ricardo,Almeida,33,Head & neck
+Matheus,Varga,15,Head & neck
+Daniela,Molnar,25,Head & neck
+Lucia,Santos,35,Head & neck
+Judit,Szilagyi,5,Head & neck
+Anita,Molnar,33,Head & neck
+Borbala,Souza,35,Head & neck
+Eszter,Santos,25,Head & neck
+Balazs,Kiss,5,Abdomen
+Borbala,Toth,30,Abdomen
+Fernanda,Ferreira,3,Abdomen
+Janos,Molnar,8,Abdomen
+Adriana,Pereira,3,Abdomen
+Vinicius,Varga,12,Abdomen
+Adam,Toth,30,Abdomen
+Peter,Papp,5,Abdomen
+Levente,Martins,8,Abdomen
+Balazs,Kovacs,20,Abdomen
+Thiago,Lima,3,Pelvis
+Emese,Horvath,10,Pelvis
+David,Kovacs,22,Pelvis
+Caio,Lakatos,1,Pelvis
+Carolina,Rodrigues,1,Pelvis
+Patricia,Kiss,23,Pelvis
+Eva,Szucs,22,Pelvis
+Ana,Pereira,5,Pelvis
+Viktoria,Szabo,5,Pelvis
+Anna,Santos,28,Pelvis
+Reka,Molnar,35,Pelvis
+Luciano,Lakatos,1,Pelvis
+Ana,Carvalho,35,Pelvis
+Isabella,Kovacs,22,Pelvis
+Diego,Szucs,5,Pelvis
+Mariana,Nagy,25,Pelvis
+Tamas,Santos,1,Pelvis
+Camila,Simon,5,Pelvis
+Szilvia,Martins,10,Crane
+Daniela,Kocsis,30,Crane
+Matheus,Miranda,30,Crane
+Helena,Nemeth,30,Crane
+Renata,Pereira,30,Lung
+Tamas,Nagy,15,Lung
+Lucas,Balogh,15,Lung
+Borbala,Fernandes,30,Lung
+Natalia,Carvalho,1,Lung
+Leonardo,Pereira,30,Lung
+Laszlo,Balogh,33,Lung
+Mate,Szucs,10,Lung
+Ricardo,Vieira,33,Lung
+Mariana,Ferreira,1,Lung
+Zoltan,Almeida,25,Lung
+Renata,Rodrigues,1,Lung
+Henrique,Papp,8,Lung special
+Tamas,Nemeth,3,Lung special
+Leonardo,Carvalho,5,Lung special
+Istvan,Juhasz,3,Lung special
+Istvan,Vieira,8,Lung special
+Bence,Papp,5,Whole Brain
+Adriana,Papp,10,Whole Brain
+Orsolya,Lakatos,5,Whole Brain
+Ana,Lima,12,Whole Brain
+Tamas,Kovacs,10,Whole Brain
+Ricardo,Molnar,10,Whole Brain
+Viktor,Vieira,12,Whole Brain
+Gustavo,Molnar,5,Whole Brain
+Orsolya,Kovacs,5,Whole Brain
+Laszlo,Juhasz,12,Whole Brain

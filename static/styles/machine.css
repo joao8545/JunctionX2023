@@ -1,39 +1,101 @@
+@import url(base.css);
 body {
     font-family: Arial, sans-serif;
-}
+    background-color: var(--light_gray);
+    color: rgb(110, 109, 109);
 
+}
+h2{
+    text-align: center;
+}
 .timeline {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid: auto;
     align-items: center;
-    margin-top: 50px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .time-label {
-    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-right: 5px;
 }
 
 .hour-container {
     display: flex;
+    align-items: flex-start;
     flex-direction: row;
-    align-items: bottom;
-    margin-bottom: 20px;
+    align-items: center;
+
+    background-color: #f2f2f2;
+    margin-bottom: -0.5;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-style: solid;
+    border-color: #d8d8d8;
+    border-width: 0.5px;
+    border-radius: 2px;
+
+    color: rgb(51, 51, 51);
 }
 
 .bar {
-    width: 60px;
-    height: 20px;
-    margin-right: 0px;
-    background-color: #3498db;
-}
-.bar[data-status="idle"] {
-    background-color: #00ff26; /* Green for idle */
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    flex: 1 1 0;
 }
 
-.bar[data-status="patient"] {
-    background-color: #2727ae; /* Blue for patient */
+.bar-interval{
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items in the center vertically */
+    justify-content: center;
+
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    white-space: nowrap;
+}
+.bar[data-status="idle"] .bar-interval{
+    background-color: #81d195; /* Green for idle */
+    /*height: 18px;
+    width: 30px;*/
+    
+    
 }
 
-.bar[data-status="maintenance"] {
-    background-color: #e74c3c; /* Red for maintenance */
+.bar[data-status="patient"] .bar-interval{
+    background-color: #71abdb; /* Blue for patient */
+    
+     
+    
 }
+
+.bar[data-status="maintenance"] .bar-interval{
+    background-color: #f57466; /* Red for maintenance */
+}
+.bar-time{
+    display: flex;
+    flex-direction: row;
+}
+
+/*    
+<div class="timeline" id="timeline">
+        {% for hour_data in timeline_data %}
+            <div class="hour-container">
+                <div class="time-label">{{ hour_data['label'] }}</div>
+                {% for bar_data in hour_data['bars'] %}
+                    <div class="bar" data-status="{{ bar_data['status'] }}">
+                        <div class="bar-interval">{{ bar_data['label'] }}</div>
+                        <div class="bar-time">{{ bar_data['start'] }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>*/

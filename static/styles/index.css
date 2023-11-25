@@ -33,6 +33,18 @@ body{
 
     margin-right: 10px;
 }
-.btn-primary:hover {
-    background-color: rgb(1, 53, 150);
+button :hover {
+    opacity: 1;
 }
+
+.voice-search-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(245, 245, 245);
+  }
+  
+  .voice-search-icon {
+    height: 24px;
+  }

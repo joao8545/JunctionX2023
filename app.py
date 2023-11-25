@@ -1,13 +1,17 @@
 from flask import Flask, render_template, request
 from datetime import datetime,timezone
 from fake_db import *
+from ntfy_wrapper import Notifier
 
+ntfy = Notifier(topics="patient1")
 app = Flask(__name__)
 
 
 
 @app.route('/')
 def index():
+    global ntfy
+    ntfy("It is time")
     return render_template('index.html')
 
 @app.route('/machines/<string:iname>',methods=['GET'])
@@ -43,7 +47,7 @@ def generate_bars():
     for j in range(12):
         start=j * 5
         status='idle' if j>5 else 'patient'
-        label='joao da silva'if status=='patient' else ''
+        label='joao da silva'if status=='patient' else '\n'
         bars.append({'start': start, 'status':status, 'label':label})
     return bars
 

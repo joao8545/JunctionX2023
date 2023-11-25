@@ -3,7 +3,7 @@ from datetime import datetime,timezone
 from fake_db import *
 from ntfy_wrapper import Notifier
 
-ntfy = Notifier(topics="patient1")
+ntfy = Notifier(topics="patient3")
 app = Flask(__name__)
 
 

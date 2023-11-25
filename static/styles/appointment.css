@@ -1,0 +1,42 @@
+/* styles.css */
+
+/* Style for the dropdown */
+.autocomplete-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.autocomplete-dropdown-content li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-dropdown-content li:hover {
+    background-color: #ddd;
+}
+
+/* Hide the additional fields and labels initially */
+#additional-fields, #availability-button {
+    display: none;
+    margin-top: 10px;
+}
+
+#region-label, #topic-label {
+    display: none;
+}
+
+#available-machines {
+    margin-top: 10px;
+    display: none;
+}

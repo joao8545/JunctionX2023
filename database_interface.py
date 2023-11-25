@@ -5,7 +5,8 @@ client = MongoClient('mongodb://100.90.187.82:27017/')
 db=client.Varian
 
 def create_db():
-    storage=db["patients"]
+    patient_storage=db["patients"]
+    machine_storage=db["machines"]
     with open("patients.txt") as file:
         for line in file.readlines()[1:]:
             l=line.split(",")
@@ -13,7 +14,11 @@ def create_db():
             surname=l[1]
             fractions=l[2]
             region=l[3]
-            storage.insert_one({"name":name, "surname":surname,"fractions":fractions,"region":region,"topic":'patient1','full_name':" ".join([name, surname]), 'appointments':{}})
+            #patient_storage.insert_one({"name":name, "surname":surname,"fractions":fractions,"region":region,"topic":'patient1','full_name':" ".join([name, surname]), 'appointments':{}})
+    with open("machines.txt") as file:
+        for line in file.readlines()[1:]:
+            l=line.split(",")
+            machine_storage.insert_one({"name":l[0],"machine_type":l[1]})
 
 def get_machine_data(machine_name):
     pass
@@ -35,5 +40,11 @@ def add_appointment(id):
 
 def get_all_patients():
     patients=db["patients"].find()
-    print(patients[0])
+
     return list(map(lambda p: Patient(**p),patients))
+
+def get_all_machines():
+    machines=db["machines"].find()
+    return list(map(lambda m: Machine(**m),machines))
+
+#create_db()

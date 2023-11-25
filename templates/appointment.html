@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Example</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/appointment.css') }}">
+</head>
+<body>
+    <h1>Autocomplete Example</h1>
+    <form>
+        <label for="name">Name:</label>
+        <div class="autocomplete-dropdown">
+            <input type="text" id="name" name="name" autocomplete="off" oninput="handleInput()">
+            <ul id="name-list" class="autocomplete-dropdown-content"></ul>
+        </div>
+
+        <!-- Hidden fields and labels initially -->
+        <div id="additional-fields">
+            <label id="region-label" for="region">Region:</label>
+            <input type="text" id="region" name="region" readonly>
+
+            <label id="topic-label" for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" readonly>
+        </div>
+
+        <!-- Hidden button initially -->
+        <button id="availability-button" type="button" onclick="checkAvailability()">Check Availability</button>
+
+        <!-- Hidden list of available machines initially -->
+        <ul id="available-machines"></ul>
+    </form>
+
+    <!-- Include the separate JavaScript file -->
+    <script src="{{ url_for('static', filename='scripts/appointment.js') }}"></script>
+</body>
+</html>

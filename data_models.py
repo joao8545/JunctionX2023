@@ -18,9 +18,21 @@ class Patient:
         return self.full_name
 
 class Machine:
-    def __init__(self,machine_type) -> None:
-        pass
-    
+    def __init__(self,name,machine_type,*args,**kwargs) -> None:
+        self.name=name
+        self.machine_type=machine_type
+    def can_treat(self,region)->bool:
+        match self.machine_type:
+            case "TB":
+                return region in ["Craniospinal","Breast","Breast special","Head & neck","Abdomen","Pelvis","Crane","Lung","Lung special"]
+            case "VB":
+                return region in ["Breast","Head & neck","Abdomen","Pelvis","Crane","Lung","Lung special","Whole Brain"]
+            case "U":
+                return region in ["Breast","Whole Brain"]
+            case _:
+                return False
+    def get_name(self):
+        return self.name
 class Appointment:
     def __init__(self,id,start_time) -> None:
         pass

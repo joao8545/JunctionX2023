@@ -26,4 +26,4 @@ patients= generate_patients(names,surnames,cancer_types,N_PATIENTS)
 with open("patients.txt","w") as out:
     out.write("name,surname,fractions,region\n")
     for p in patients:
-        out.write(f"{p.name},{p.surname},{p.n_fractions},{p.region},\n")
+        out.write(f"{p.name},{p.surname},{p.fractions},{p.region},\n")

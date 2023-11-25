@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from data_models import *
 
 client = MongoClient('mongodb://100.90.187.82:27017/')
 db=client.Varian
@@ -32,5 +33,7 @@ def add_patient_data(data):
 def add_appointment(id):
     pass
 
-
-create_db()
+def get_all_patients():
+    patients=db["patients"].find()
+    print(patients[0])
+    return list(map(lambda p: Patient(**p),patients))

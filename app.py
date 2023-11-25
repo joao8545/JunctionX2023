@@ -20,9 +20,8 @@ def index():
 
 @app.route('/machines/<string:iname>',methods=['GET'])
 def machine(iname):
-    global board
-    query_result=db.get_machine_data(iname)
-    return render_template('machine.html',sname=iname,obj=query_result)
+    timeline_data=db.get_machine_schedule(iname)
+    return render_template('machine.html',timeline_data=timeline_data)
 
 
 @app.route('/machines')
@@ -69,6 +68,7 @@ def generate_timeline_data():
     for i in range(8,18):
         hour_label = f'{i}:00'
         timeline_data.append({'label': hour_label, 'bars': generate_bars()})
+    #print(timeline_data)
     return timeline_data
 
 def generate_bars():

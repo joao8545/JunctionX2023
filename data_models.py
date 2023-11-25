@@ -18,9 +18,11 @@ class Patient:
         return self.full_name
 
 class Machine:
-    def __init__(self,name,machine_type,*args,**kwargs) -> None:
+    def __init__(self,name,machine_type,schedule={},*args,**kwargs) -> None:
+        #schedule={date:{hour:[patient_name|empty|maintanence(x12)]}}
         self.name=name
         self.machine_type=machine_type
+        self.schedule=schedule
     def can_treat(self,region)->bool:
         match self.machine_type:
             case "TB":
@@ -31,8 +33,10 @@ class Machine:
                 return region in ["Breast","Whole Brain"]
             case _:
                 return False
+
     def get_name(self):
         return self.name
+
 class Appointment:
     def __init__(self,id,start_time) -> None:
         pass

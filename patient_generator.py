@@ -27,3 +27,10 @@ with open("patients.txt","w") as out:
     out.write("name,surname,fractions,region\n")
     for p in patients:
         out.write(f"{p.name},{p.surname},{p.fractions},{p.region},\n")
+
+with open("machines.txt","w") as machines:
+    machines.write("name,type,\n")
+    for i in range(1,3):
+        for t in ["TB","VB"]:
+            machines.write(f"{t}{i},{t},\n")
+    machines.write("U1,U,\n")

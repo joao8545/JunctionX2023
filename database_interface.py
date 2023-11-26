@@ -94,7 +94,8 @@ def get_available_periods(machine, num_seg,fract):
             bookable= True
     return {"slots":response,"bookable":bookable}
 
-
+def get_machine_schedule_of_day(machine,day):
+    return {f"{day}":get_machine_schedule(machine)[day]}
 
 def get_patient_data(full_name):
     pass

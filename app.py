@@ -72,7 +72,16 @@ def check_availability():
         return jsonify({})
 
 
+@app.route('/check_day', methods=['GET'])
+def get_timeline_data(day):
+    day = request.args.get('day')
+    machine = request.args.get('machine')
+    timeline_data = db.get_machine_schedule_of_day(machine,day)
+    return jsonify(timeline_data)
 
+@app.route('/api/max_days', methods=['GET'])
+def get_max_days():
+    return jsonify({'max_days': 3})  # Change the value as per your requirement
 
 def generate_timeline_data():
     timeline_data = []

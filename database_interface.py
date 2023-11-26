@@ -1,6 +1,12 @@
+import sys
 from pymongo import MongoClient
 from data_models import *
 import random
+from ntfy_wrapper import Notifier
+from apscheduler.schedulers.background import BaseScheduler
+from datetime import datetime
+ntfy = Notifier(topics="patient4")
+
 
 client = MongoClient('mongodb://100.90.168.156:27017/')
 db=client.Varian
@@ -21,12 +27,16 @@ def create_db():
         for line in file.readlines()[1:]:
             l=line.split(",")
             sched={}
-            for date in ["2023-11-29","2023-11-25","2023-11-24","2023-11-26","2023-11-27","2023-11-28"]:
+            for date in ["2023-11-29","2023-11-25","2023-11-24","2023-11-26","2023-11-27","2023-11-28","2023-11-23","2023-11-22","2023-11-21","2023-11-20","2023-11-19"]:
                 sched[date]={}
                 for h in range(8,18):
                     usage=[]
                     for j in range(12):
-                        usage.append(random.choice(["patient_name","empty","maintanence"]))
+                        typed=random.choice(["patient_name","empty","maintenance"])
+                        value=typed
+                        if typed=="patient_name":
+                            value=random.choice(list(patient_storage.find()))['full_name']
+                        usage.append(value)
                     sched[date][str(h)]=usage
             m=Machine(l[0],l[1],schedule=sched)
             machine_storage.insert_one(m.toJSON())
@@ -41,7 +51,7 @@ def get_machine_schedule(machine_name):
         timeline_data[kw]=[]
         for hour in daily.keys():
             data=daily[hour]
-            timeline_data[kw].append({'label':f"{hour}:00",'bars':[{'start': (i)*5, 'status': "idle" if data[i]=="empty" else "maintenance" if data[i]=="maintanence" else "patient", 'label': data[i]} for i in range(len(data))]})
+            timeline_data[kw].append({'label':f"{hour}:00",'bars':[{'start': (i)*5, 'status': "idle" if data[i]=="empty" else "maintenance" if data[i]=="maintenance" else "patient", 'label': data[i]} for i in range(len(data))]})
     #timeline_data=[{'label': '17:00', 'bars': [{'start': 0, 'status': 'patient', 'label': 'joao da silva'}]}]
     #print(timeline_data)
     return timeline_data
@@ -92,6 +102,7 @@ def get_available_periods(machine, num_seg,fract):
             sequential_days=0
         if sequential_days>=int(fract):
             bookable= True
+            break
     return {"slots":response,"bookable":bookable}
 
 def get_machine_schedule_of_day(machine,day):
@@ -109,6 +120,32 @@ def add_machine_data(data):
 def add_patient_data(data):
     pass
 
+def create_appointment(patient_name,machine_name,days):
+
+    appointment_storage=db["appointments"]
+    patient=db["patients"].find_one({'full_name':patient_name})
+    machine=db["machines"].find_one({'name':machine_name})
+    ntfy = Notifier(topics=patient['ntfy_topic'])
+    ntfy(f"Session in machine {machine_name} scheduled for {days}")
+    appointment_storage.insert_one({"patient":patient_name,"machine":machine_name,'days':days.split(",")})
+    p=Patient(**patient)
+    m=Machine(**machine)
+    for d in days.split(","):
+        p.appointments[d]=machine
+        date="-".join(d.split("-")[:3])
+        h=d.split("-")[3]
+        h_index=int(h)
+        min=int(d.split("-")[4])//5
+        #BaseScheduler.add_job(lambda :ntfy(f"Session in machine {machine_name} is about to start"),'date', run_date=datetime(d.split("-")[0], d.split("-")[1], d.split("-")[2], d.split("-")[3], d.split("-")[4], 0))
+        for i in range(min,min+int(p.duration//5)):
+            index=i
+            if index>=12:
+                index=i-12
+                h_index+=i//12
+            m.schedule[date][str(h_index)][index]=p.full_name
+    db["patients"].update_one({'full_name': patient_name}, {'$set': p.__dict__})
+    db["machines"].update_one({'name': machine_name}, {'$set': m.__dict__})
+
 def add_appointment(id):
     pass
 
@@ -124,4 +161,4 @@ def get_all_machines():
 
 if __name__ == '__main__':
     pass
-    #create_db()
+    create_db()

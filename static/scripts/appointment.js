@@ -110,7 +110,7 @@ function displayAvailableMachines(availableMachines) {
 
     if (availableMachines.length > 0) {
         availableMachines.forEach(function (machine) {
-            var listItem = document.createElement('li');
+            var listItem = document.createElement('p');
             var link = document.createElement('a');
             link.textContent = machine;
             link.href = '#';  // Set href to '#' to prevent the page from navigating
@@ -150,8 +150,8 @@ function showMachineTable(machine) {
 }
 
 function makeAppointment(patient, machine,bookedDays) {
-    const bookedDaysString = bookedDays.join(',');
-    fetch('/make_appointment?machine=' + encodeURIComponent(machine) + '&name=' + encodeURIComponent(patient) + '&bookedDays=' + encodeURIComponent(bookedDaysString))
+    //const bookedDaysString = bookedDays.join(',');
+    fetch('/make_appointment?machine=' + encodeURIComponent(machine) + '&name=' + encodeURIComponent(patient) + '&bookedDays=' + encodeURIComponent(bookedDays))
         .then(response => response.json())
         .then(data => {
             // Handle the response as needed
@@ -202,7 +202,7 @@ function createAndDisplayTable(patientData, machineData, treatmentData) {
         bookableButton.onclick = function () {
             // Add your booking logic here
             makeAppointment(patientData.full_name,machineData.name,treatmentData.slots);
-            alert('Booking logic goes here!');
+            //alert('Booking logic goes here!');
         };
         bookableCell.appendChild(bookableButton);
     } else {

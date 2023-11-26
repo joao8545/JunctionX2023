@@ -33,7 +33,7 @@ class Patient:
 
 class Machine:
     def __init__(self,name,machine_type,schedule={},*args,**kwargs) -> None:
-        #schedule={date:{hour:[patient_name|empty|maintanence(x12)]}}
+        #schedule={date:{hour:[patient_name|empty|maintenance(x12)]}}
         self.name=name
         self.machine_type=machine_type
         self.schedule=schedule

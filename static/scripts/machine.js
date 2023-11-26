@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function changeDay(delta) {
     currentDay += delta;
-    if (currentDay <= 23) {
-        currentDay = maxDays - 1;
+    if (currentDay <= 18) {
+        currentDay = maxDays;
     } else if (currentDay > maxDays) {
-        currentDay = 24;
+        currentDay = 19;
     }
     document.getElementById('currentDay').innerText = 'Day ' + (currentDay);
     currentDate = "2023-11-"+currentDay

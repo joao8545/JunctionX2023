@@ -2,6 +2,7 @@ from flask import Flask, render_template, request,jsonify
 from datetime import datetime,timezone
 import database_interface as db
 from ntfy_wrapper import Notifier
+import sys
 
 
 ntfy = Notifier(topics="patient3")
@@ -14,7 +15,6 @@ names=list(map(lambda x: x.get_name(), patients))
 
 @app.route('/')
 def index():
-    global ntfy
     return render_template('index.html')
 
 @app.route('/machines/<string:iname>',methods=['GET'])
@@ -70,6 +70,13 @@ def check_availability():
     else:
         return jsonify({})
 
+@app.route('/make_appointment', methods=['GET'])
+def make_appointment():
+    name = request.args.get('name')
+    machine = request.args.get('machine')
+    days = request.args.get('bookedDays')
+    db.create_appointment(name,machine,days)
+    return {}
 
 @app.route('/check_day', methods=['GET'])
 def get_timeline_data():

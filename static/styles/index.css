@@ -33,18 +33,56 @@ body{
 
     margin-right: 10px;
 }
-button :hover {
-    opacity: 1;
+.btn:hover {
+    opacity: 0.8 0.3s; /* Adjust the opacity as needed */
 }
 
-.voice-search-button {
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
+.container-appointment {
+    text-align: left;
+    margin-left: 80%; /* Adjust the margin as needed */
+    margin-top: 5%;
+    margin-bottom: 3%;
+    width: 50px;
+}
+
+.add-more-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
     border: none;
-    background-color: rgb(245, 245, 245);
-  }
-  
-  .voice-search-icon {
-    height: 24px;
-  }
+    cursor: pointer;
+}
+
+.add-more-icon {
+    width: 50px; /* Adjust the icon size as needed */
+    height: 50px;
+}
+
+
+.add-more-text {
+    position: absolute;
+    top: 50%;
+    left: 60px; /* Adjust the left position as needed */
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    font-family: var(--dark_blue);
+    white-space: nowrap;
+    color: rgb(65, 65, 65);
+
+    background-color: rgb(231, 231, 231);
+    padding: 10px;
+    border-radius: 10px;
+    border-color: rgb(212, 212, 212);
+    border-style: solid;
+    border-width: 0.2px;
+}
+
+.add-more-button:hover .add-more-text {
+    opacity: 1;
+}

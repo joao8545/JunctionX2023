@@ -1,4 +1,8 @@
-/* styles.css */
+@import url(base.css);
+h2{
+    text-align: center;
+    color: rgb(110, 109, 109);
+}
 
 /* Style for the dropdown */
 .autocomplete-dropdown {

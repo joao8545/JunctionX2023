@@ -1,12 +1,8 @@
 @import url(base.css);
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--light_gray);
-    color: rgb(110, 109, 109);
 
-}
 h2{
     text-align: center;
+    color: rgb(110, 109, 109);
 }
 .timeline {
     display: flex;

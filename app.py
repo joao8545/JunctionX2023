@@ -15,7 +15,6 @@ names=list(map(lambda x: x.get_name(), patients))
 @app.route('/')
 def index():
     global ntfy
-    ntfy("It is time")
     return render_template('index.html')
 
 @app.route('/machines/<string:iname>',methods=['GET'])
@@ -26,7 +25,7 @@ def machine(iname):
 @app.route('/machines')
 def machine_base():
     timeline_data = generate_timeline_data()
-    return render_template('machine.html',timeline_data=timeline_data)
+    return render_template('machine.html',timeline_data=timeline_data['2023-11-24'])
 
 @app.route('/appointment')
 def new_appointment():
@@ -73,7 +72,7 @@ def check_availability():
 
 
 @app.route('/check_day', methods=['GET'])
-def get_timeline_data(day):
+def get_timeline_data():
     day = request.args.get('day')
     machine = request.args.get('machine')
     timeline_data = db.get_machine_schedule_of_day(machine,day)
@@ -81,13 +80,13 @@ def get_timeline_data(day):
 
 @app.route('/api/max_days', methods=['GET'])
 def get_max_days():
-    return jsonify({'max_days': 3})  # Change the value as per your requirement
+    return jsonify({'max_days': 29})  # Change the value as per your requirement
 
 def generate_timeline_data():
     timeline_data = []
 
     for i in range(8,18):
-        hour_label = f'{i}:00'
+        hour_label = f'{i:02}:00'
         timeline_data.append({'label': hour_label, 'bars': generate_bars()})
     #print(timeline_data)
     return timeline_data

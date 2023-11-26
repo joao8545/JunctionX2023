@@ -7,13 +7,16 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/appointment.css') }}">
 </head>
 <body>
-    <h1>Autocomplete Example</h1>
-    <form>
-        <label for="name">Name:</label>
-        <div class="autocomplete-dropdown">
-            <input type="text" id="name" name="name" autocomplete="off" oninput="handleInput()">
-            <ul id="name-list" class="autocomplete-dropdown-content"></ul>
+    <h2>Autocomplete Example</h2>
+    <form class="page-grid">
+        <div class="name-drop">
+            <label for="name">Name:</label>
+            <div class="autocomplete-dropdown">
+                <input type="text" id="name" name="name" autocomplete="off" oninput="handleInput()">
+                <ul id="name-list" class="autocomplete-dropdown-content"></ul>
+            </div>
         </div>
+        
 
         <!-- Button to trigger the same functionality as clicking in the name -->
         <button type="button" onclick="handleButtonClick()">Fetch Data</button>

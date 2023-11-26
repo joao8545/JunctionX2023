@@ -2,5 +2,11 @@
     --light_gray: #f2f2f2;
     --dark_blue: rgb(0, 44, 126);
     --font_style: Arial, sans-serif;
+    
 
+}
+body{
+    background-color: var(--light_gray);
+    font-family: var(--font_style);
+    
 }

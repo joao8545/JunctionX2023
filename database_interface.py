@@ -1,4 +1,4 @@
-import sys
+import os
 from pymongo import MongoClient
 from data_models import *
 import random
@@ -7,8 +7,8 @@ from apscheduler.schedulers.background import BaseScheduler
 from datetime import datetime
 ntfy = Notifier(topics="patient4")
 
-
-client = MongoClient('mongodb://100.90.168.156:27017/')
+mongodb_address = os.environ.get("MONGODB_ADDRESS", "mongodb://localhost:27017/")
+client = MongoClient(mongodb_address)
 db=client.Varian
 
 def create_db():
@@ -22,7 +22,7 @@ def create_db():
             fractions=l[2]
             region=l[3]
             p=Patient(name,surname,region,fractions)
-            #patient_storage.insert_one(p.toJSON())
+            patient_storage.insert_one(p.toJSON())
     with open("machines.txt") as file:
         for line in file.readlines()[1:]:
             l=line.split(",")

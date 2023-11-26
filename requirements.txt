@@ -1,0 +1,5 @@
+Werkzeug==2.2.2
+pymongo==4.3.3
+ntfy-wrapper==0.1.7
+Flask==2.2.3
+APScheduler==3.10.4

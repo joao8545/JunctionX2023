@@ -29,8 +29,34 @@ function handleInput() {
 }
 
 function handleButtonClick() {
-    // Trigger the same functionality as clicking in the name
-    handleInput();
+    var name = document.getElementById('name').value;
+
+    // Check if the name is in the database
+    fetch('/patient_info?name=' + name)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if ('name' in data) {
+                // If data exists, show the information
+                document.getElementById('region').value = data.region || '';
+                document.getElementById('topic').value = data.ntfy_topic || '';
+
+                // Show the additional fields and labels
+                document.getElementById('additional-fields').style.display = 'block';
+                document.getElementById('region-label').style.display = 'block';
+                document.getElementById('topic-label').style.display = 'block';
+
+                // Show the button
+                document.getElementById('availability-button').style.display = 'block';
+
+                // Fetch and display available machines if needed
+                checkAvailability();
+            } else {
+                // If data doesn't exist, do nothing or show an appropriate message
+                console.log('Name not found in the database.');
+                alert('Error: Name not found in the database.');
+            }
+        });
 }
 
 function displayResults(results) {
@@ -123,7 +149,22 @@ function showMachineTable(machine) {
         });
 }
 
-function createAndDisplayTable(patientData, machineData,treatmentData) {
+function makeAppointment(patient, machine,bookedDays) {
+    const bookedDaysString = bookedDays.join(',');
+    fetch('/make_appointment?machine=' + encodeURIComponent(machine) + '&name=' + encodeURIComponent(patient) + '&bookedDays=' + encodeURIComponent(bookedDaysString))
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response as needed
+            console.log('Appointment made successfully:', data);
+            // You can add additional logic based on the response, such as displaying a confirmation message.
+        })
+        .catch(error => {
+            console.error('Error making appointment:', error);
+            // You can add error handling logic, such as displaying an error message.
+        });
+}
+
+function createAndDisplayTable(patientData, machineData, treatmentData) {
     var tableContainer = document.getElementById('table-container');
     tableContainer.innerHTML = '';  // Clear previous content
 
@@ -148,12 +189,27 @@ function createAndDisplayTable(patientData, machineData,treatmentData) {
     createCell(dataRow, 'Treatment duration:', patientData.duration + " min");
     createCell(dataRow, 'Number of fractions:', patientData.fractions);
 
-
     var machineDataRow = table.insertRow();
     createCell(machineDataRow, 'Machine Name:', machineData.name);
-    createCell(machineDataRow, 'Machine Type:', machineData.full_name );
-    createCell(machineDataRow, "Available date and hour",treatmentData.slots)
-    createCell(machineDataRow, "Bookable",treatmentData.bookable)
+    createCell(machineDataRow, 'Machine Type:', machineData.full_name);
+    createCell(machineDataRow, "Available date and hour", treatmentData.slots);
+
+    // Create a button or warning based on the value of treatmentData.bookable
+    if (treatmentData.bookable) {
+        var bookableCell = machineDataRow.insertCell();
+        var bookableButton = document.createElement('button');
+        bookableButton.textContent = 'Book Now';
+        bookableButton.onclick = function () {
+            // Add your booking logic here
+            makeAppointment(patientData.full_name,machineData.name,treatmentData.slots);
+            alert('Booking logic goes here!');
+        };
+        bookableCell.appendChild(bookableButton);
+    } else {
+        var warningCell = machineDataRow.insertCell();
+        warningCell.textContent = 'Warning: This machine is not currently bookable.';
+        warningCell.style.color = 'red';  // Apply a red color for emphasis
+    }
 
     // Append the table to the container
     tableContainer.appendChild(table);

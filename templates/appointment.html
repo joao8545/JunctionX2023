@@ -15,6 +15,9 @@
             <ul id="name-list" class="autocomplete-dropdown-content"></ul>
         </div>
 
+        <!-- Button to trigger the same functionality as clicking in the name -->
+        <button type="button" onclick="handleButtonClick()">Fetch Data</button>
+
         <!-- Hidden fields and labels initially -->
         <div id="additional-fields">
             <label id="region-label" for="region">Region:</label>
@@ -29,6 +32,9 @@
 
         <!-- Hidden list of available machines initially -->
         <ul id="available-machines"></ul>
+
+        <!-- Container for the machine data table -->
+        <div id="table-container" style="display: none;"></div>
     </form>
 
     <!-- Include the separate JavaScript file -->

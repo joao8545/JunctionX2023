@@ -23,7 +23,6 @@ def machine(iname):
     timeline_data=db.get_machine_schedule(iname)
     return render_template('machine.html',timeline_data=timeline_data)
 
-
 @app.route('/machines')
 def machine_base():
     timeline_data = generate_timeline_data()
@@ -44,9 +43,22 @@ def user_info():
     name = request.args.get('name')
     user = next((user for user in patients if user.get_name().lower() == name.lower()), None)
     if user:
-        return jsonify({"region": user.region, "topic": user.ntfy_topic})
+        return jsonify(user.toJSON())
     else:
         return jsonify({})
+
+@app.route('/machine_info', methods=['GET'])
+def machine_info():
+    machine = request.args.get('machine')
+    machine_data = db.get_machine_info(machine)
+    return machine_data
+
+@app.route('/treatment_info', methods=['GET'])
+def treatment_info():
+    name = request.args.get('name')
+    machine = request.args.get('machine')
+    treatment_data = db.get_treatment_info(machine,name)
+    return treatment_data
 
 @app.route('/check_availability', methods=['GET'])
 def check_availability():
@@ -83,4 +95,4 @@ def generate_bars():
 
 if __name__ == '__main__':
     app.jinja_env.add_extension('jinja2.ext.loopcontrols')
-    app.run(debug = True)
+    app.run(debug = True,host="0.0.0.0")
